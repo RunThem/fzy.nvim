@@ -8,14 +8,15 @@ function M.new_popup()
   api.nvim_buf_set_option(buf, 'bufhidden', 'wipe')
 
   local lines = api.nvim_get_option('lines')
+  local columns = api.nvim_get_option('columns')
 
   local opts = {
     relative = 'editor',
     style = 'minimal',
     row = lines - 24,
-    col = 5,
-    width = 120,
-    height = 18,
+    col = 0,
+    width = columns - 2,
+    height = 20,
     border = 'single',
   }
 
@@ -33,7 +34,7 @@ end
 
 function sinks.edit_live_grep(selection)
   -- fzy returns search input if zero results found. This case is mapped to nil as well.
-  selection = string.match(selection, '.+:%d+: .+')
+  selection = string.match(selection, '.+:%d+:')
   if selection then
     local parts = vim.split(selection, ':')
     local path, line = parts[1], parts[2]
