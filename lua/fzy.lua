@@ -15,9 +15,9 @@ function M.new_popup()
     style = 'minimal',
     row = lines - 24,
     col = 0,
-    width = columns - 2,
-    height = 20,
-    border = 'single',
+    width = columns,
+    height = 22,
+    -- border = 'single',
   }
 
   local win = api.nvim_open_win(buf, true, opts)
